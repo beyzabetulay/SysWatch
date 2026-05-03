@@ -4,3 +4,41 @@
 2026-05-03 14:18:04,010 [INFO] monitor.process_monitor — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0)]
 2026-05-03 14:18:18,036 [INFO] monitor.process_monitor — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0)]
 2026-05-03 14:18:19,121 [INFO] monitor.process_monitor — Top processes: [('antigravity', 14.7), ('antigravity', 11.0), ('gnome-shell', 10.9), ('spotify', 10.1), ('python', 7.4)]
+2026-05-03 14:30:26,654 [INFO] __main__ — Monitoring started (interval=5s)
+2026-05-03 14:30:27,656 [INFO] __main__ — CPU: 3.3%  RAM: 56.7%  DISK: 30.6%
+2026-05-03 14:30:32,656 [INFO] __main__ — CPU: 1.9%  RAM: 56.7%  DISK: 30.6%
+2026-05-03 14:30:37,656 [INFO] __main__ — CPU: 1.8%  RAM: 56.7%  DISK: 30.6%
+2026-05-03 14:30:42,656 [INFO] __main__ — CPU: 7.3%  RAM: 57.6%  DISK: 30.6%
+2026-05-03 14:30:47,657 [INFO] __main__ — CPU: 3.5%  RAM: 57.9%  DISK: 30.6%
+2026-05-03 14:30:52,657 [INFO] __main__ — CPU: 3.3%  RAM: 57.4%  DISK: 30.6%
+2026-05-03 14:30:57,657 [INFO] __main__ — CPU: 3.6%  RAM: 57.5%  DISK: 30.6%
+2026-05-03 14:31:02,657 [INFO] __main__ — CPU: 1.9%  RAM: 57.1%  DISK: 30.6%
+2026-05-03 14:31:07,657 [INFO] __main__ — CPU: 3.5%  RAM: 56.8%  DISK: 30.6%
+2026-05-03 14:31:12,657 [INFO] __main__ — CPU: 7.0%  RAM: 56.8%  DISK: 30.6%
+2026-05-03 14:31:17,658 [INFO] __main__ — CPU: 5.8%  RAM: 56.7%  DISK: 30.6%
+2026-05-03 14:31:22,657 [INFO] __main__ — CPU: 2.5%  RAM: 56.7%  DISK: 30.6%
+2026-05-03 14:31:27,657 [INFO] __main__ — CPU: 3.6%  RAM: 56.6%  DISK: 30.6%
+2026-05-03 14:31:32,657 [INFO] __main__ — CPU: 4.5%  RAM: 56.8%  DISK: 30.6%
+2026-05-03 14:31:37,658 [INFO] __main__ — CPU: 3.5%  RAM: 56.8%  DISK: 30.6%
+2026-05-03 14:31:42,657 [INFO] __main__ — CPU: 9.9%  RAM: 57.4%  DISK: 30.6%
+2026-05-03 14:31:47,659 [INFO] __main__ — CPU: 6.2%  RAM: 58.2%  DISK: 30.6%
+2026-05-03 14:31:52,659 [INFO] __main__ — CPU: 6.8%  RAM: 58.0%  DISK: 30.6%
+2026-05-03 14:31:57,658 [INFO] __main__ — CPU: 14.9%  RAM: 58.7%  DISK: 30.6%
+2026-05-03 14:32:02,659 [INFO] __main__ — CPU: 7.7%  RAM: 58.8%  DISK: 30.6%
+2026-05-03 14:32:03,552 [WARNING] __main__ — Monitoring stopped
+2026-05-03 14:34:32,429 [INFO] __main__ — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0), ('kworker/R-kvfree_rcu_reclaim', 0.0), ('kworker/R-slub_flushwq', 0.0), ('kworker/R-netns', 0.0)]
+2026-05-03 14:34:33,510 [INFO] __main__ — Top processes: [('antigravity', 10.1), ('python', 7.4), ('spotify', 5.5), ('antigravity', 3.7), ('gnome-shell', 3.6)]
+2026-05-03 14:35:05,942 [INFO] __main__ — Monitoring started (interval=5s)
+2026-05-03 14:35:07,057 [INFO] monitor.process_monitor — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0)]
+2026-05-03 14:35:07,058 [INFO] __main__ — CPU: 3.9%  RAM: 55.3%  DISK: 30.6%
+2026-05-03 14:35:12,062 [INFO] monitor.process_monitor — Top processes: [('antigravity', 75.1), ('spotify', 17.6), ('gnome-shell', 11.0), ('antigravity', 6.8), ('antigravity', 4.8)]
+2026-05-03 14:35:12,062 [INFO] __main__ — CPU: 5.3%  RAM: 55.2%  DISK: 30.6%
+2026-05-03 14:35:17,070 [INFO] monitor.process_monitor — Top processes: [('antigravity', 96.5), ('antigravity', 12.0), ('gnome-shell', 11.0), ('spotify', 7.2), ('antigravity', 6.8)]
+2026-05-03 14:35:17,071 [INFO] __main__ — CPU: 7.3%  RAM: 55.2%  DISK: 30.6%
+2026-05-03 14:35:22,063 [INFO] monitor.process_monitor — Top processes: [('antigravity', 86.9), ('antigravity', 9.8), ('gnome-shell', 9.2), ('spotify', 7.2), ('antigravity', 6.6)]
+2026-05-03 14:35:22,063 [INFO] __main__ — CPU: 6.0%  RAM: 55.0%  DISK: 30.6%
+2026-05-03 14:35:27,067 [INFO] monitor.process_monitor — Top processes: [('antigravity', 52.0), ('spotify', 16.8), ('antigravity', 7.4), ('gnome-shell', 6.2), ('antigravity', 3.8)]
+2026-05-03 14:35:27,068 [INFO] __main__ — CPU: 9.2%  RAM: 55.0%  DISK: 30.6%
+2026-05-03 14:35:30,648 [WARNING] __main__ — Monitoring stopped
+2026-05-03 14:35:32,864 [INFO] __main__ — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0), ('kworker/R-kvfree_rcu_reclaim', 0.0), ('kworker/R-slub_flushwq', 0.0), ('kworker/R-netns', 0.0)]
+2026-05-03 14:35:33,987 [INFO] __main__ — Top processes: [('antigravity', 16.8), ('python', 11.6), ('spotify', 7.1), ('antigravity', 4.4), ('antigravity', 4.4)]
