@@ -1,3 +1,6 @@
 2026-05-03 13:40:18,247 [INFO] __main__ — Monitoring started (interval=5s)
 2026-05-03 13:40:19,249 [INFO] __main__ — CPU: 5.5%  RAM: 50.2%  DISK: 30.6%
 2026-05-03 13:40:24,249 [INFO] __main__ — CPU: 5.0%  RAM: 50.1%  DISK: 30.6%
+2026-05-03 14:18:04,010 [INFO] monitor.process_monitor — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0)]
+2026-05-03 14:18:18,036 [INFO] monitor.process_monitor — Top processes: [('systemd', 0.0), ('kthreadd', 0.0), ('pool_workqueue_release', 0.0), ('kworker/R-rcu_gp', 0.0), ('kworker/R-sync_wq', 0.0)]
+2026-05-03 14:18:19,121 [INFO] monitor.process_monitor — Top processes: [('antigravity', 14.7), ('antigravity', 11.0), ('gnome-shell', 10.9), ('spotify', 10.1), ('python', 7.4)]
