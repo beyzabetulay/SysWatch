@@ -2,6 +2,7 @@
 import time
 from monitor.system_reader import get_snapshot
 from monitor.logger import setup_logger
+from monitor.csv_writer import write_snapshot
 
 logger = setup_logger(__name__)
 
@@ -14,6 +15,7 @@ def run(interval: int = 5):
             start = time.time()          # ⏱ döngü başlangıcı
             try:
                 snapshot = get_snapshot()
+                write_snapshot(snapshot) # CSV'ye kaydet
                 msg = (
                     f"CPU: {snapshot['cpu_usage - %']}%  "
                     f"RAM: {snapshot['memory_usage_percent - %']}%  "
