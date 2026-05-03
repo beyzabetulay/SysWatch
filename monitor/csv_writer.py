@@ -2,18 +2,18 @@ import csv
 import threading
 from pathlib import Path
 
-# Thread safety: birden fazla thread aynı anda dosyaya yazmasın
+# Thread safety: prevent multiple threads from writing to the file at the same time
 _lock = threading.Lock()
 
 
 def write_snapshot(snapshot: dict, filepath="data/metrics.csv"):
-    """Bir snapshot dict'ini CSV dosyasına ekler (append mode)."""
+    """Appends a snapshot dict to the CSV file (append mode)."""
     path = Path(filepath)
 
-    # data/ klasörü yoksa otomatik oluştur
+    # Automatically create the data/ directory if it doesn't exist
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Dosya var mı? Yoksa header yazılacak
+    # Check if file exists. If not, header will be written
     file_exists = path.exists()
 
     with _lock:
@@ -24,4 +24,4 @@ def write_snapshot(snapshot: dict, filepath="data/metrics.csv"):
                 writer.writeheader()
 
             writer.writerow(snapshot)
-            f.flush()  # Crash durumunda veri kaybını önle
+            f.flush()  # Prevent data loss in case of a crash

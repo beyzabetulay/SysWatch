@@ -6,14 +6,14 @@ logger = setup_logger(__name__)
 
 ProcessInfo = namedtuple("ProcessInfo", ["pid", "name", "cpu_pct", "mem_pct"])
 
-def get_top_processes(n: int = 5) -> list[ProcessInfo]:
+def get_top_processes(n: int = 8) -> list[ProcessInfo]:
     processes = []
     
-    # Process bilgilerini topla
+    # Collect process information
     for proc in psutil.process_iter(["pid", "name", "cpu_percent", "memory_percent"]):
         try:
             info = proc.info
-            # Eğer cpu_percent veya memory_percent None gelirse (okunamadıysa) 0 kabul edelim
+            # If cpu_percent or memory_percent is None (could not be read), treat as 0.0
             cpu = info.get("cpu_percent") or 0.0
             mem = info.get("memory_percent") or 0.0
             
@@ -26,16 +26,27 @@ def get_top_processes(n: int = 5) -> list[ProcessInfo]:
                 )
             )
         except (psutil.NoSuchProcess, psutil.AccessDenied):
-            # Sistem proseslerine erişemezsek veya proses kapanmışsa görmezden gel
+            # Ignore if we cannot access system processes or the process has terminated
             continue
             
-    # CPU kullanımına göre azalan sırada sırala
+    # Sort in descending order by CPU usage
     sorted_procs = sorted(processes, key=lambda p: p.cpu_pct, reverse=True)
     
-    # Sadece en çok kullanan n tanesini al
+    # Take only the top n consumers
     top_n = sorted_procs[:n]
     
-    # Logla
+    # Log the results
     logger.info("Top processes: %s", [(p.name, p.cpu_pct) for p in top_n])
     
     return top_n
+
+if __name__ == "__main__":
+    # Call for testing purposes when the file is run directly
+    print("⏳ Collecting...")
+    import time
+    get_top_processes() # First call initializes psutil CPU counters
+    time.sleep(1)
+    procs = get_top_processes(5)
+    print("\n🔥 Top 5 Processes by CPU Usage:")
+    for p in procs:
+        print(f"PID: {p.pid:5d} | {p.name[:15]:15s} | CPU: {p.cpu_pct}% | RAM: {p.mem_pct}%")
