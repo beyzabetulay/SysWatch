@@ -1,56 +1,77 @@
 import pandas as pd
 import logging
+import time
+import json
 from pathlib import Path
 
-# Configure logging for English output
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Configurable thresholds (Could be moved to a .env or config.yaml later)
+CPU_THRESHOLD = 80
+WINDOW_SIZE = 10
 
 def load_metrics(filepath: str) -> pd.DataFrame:
-    """Loads CSV data and sets timestamp as index."""
+    """
+    Loads data and handles missing values (NaN).
+    Why: If the system skips a beat, pandas might create empty rows. 
+    'dropna' ensures our math doesn't break.
+    """
     try:
         df = pd.read_csv(filepath, parse_dates=["timestamp"])
         df.set_index("timestamp", inplace=True)
+        
+        # Clean data: Remove rows where all columns are empty
+        df.dropna(how='all', inplace=True)
+        
         return df
     except Exception as e:
-        logging.error(f"Error loading CSV: {e}")
+        logging.error(f"Critical error during CSV load: {e}")
         return pd.DataFrame()
 
-def resample_by_minute(df: pd.DataFrame) -> pd.DataFrame:
-    """Condenses snapshots into 1-minute averages."""
-    return df.resample("1min").mean()
-
-def rolling_average(df: pd.DataFrame, window: int = 10) -> pd.DataFrame:
-    """Calculates moving average based on the provided window size."""
-    return df.rolling(window=window).mean()
-
-def detect_spikes(df: pd.DataFrame, column: str = "cpu_pct", threshold: int = 80) -> pd.DataFrame:
-    """Identifies points where a metric exceeds the threshold."""
-    return df[df[column] > threshold]
-
 def analyze(filepath: str) -> dict:
-    """Performs full analysis and returns a JSON-serializable report."""
+    """
+    Performs analysis with performance tracking and data safety.
+    """
+    start_time = time.perf_counter() # Start the stopwatch
+    
     df = load_metrics(filepath)
-    
     if df.empty:
-        return {"error": "Data not found or file is corrupted."}
+        return {"status": "error", "message": "No data to analyze."}
 
-    spikes = detect_spikes(df)
+    # Spike Detection
+    spikes = df[df["cpu_pct"] > CPU_THRESHOLD]
     
-    # Ensure all values are JSON-serializable (native Python types)
+    # Calculate execution time
+    end_time = time.perf_counter()
+    processing_duration = end_time - start_time
+
+    # Generate Report
     report = {
-        "avg_cpu": float(df["cpu_pct"].mean()),
-        "max_cpu": float(df["cpu_pct"].max()),
-        "spike_count": int(len(spikes)),
-        "spike_times": [str(t) for t in spikes.index]
+        "metadata": {
+            "analysis_date": str(pd.Timestamp.now()),
+            "processing_time_sec": round(processing_duration, 4),
+            "data_points": len(df)
+        },
+        "stats": {
+            "avg_cpu": round(float(df["cpu_pct"].mean()), 2),
+            "max_cpu": float(df["cpu_pct"].max()),
+            "spike_count": int(len(spikes))
+        },
+        "alerts": [str(t) for t in spikes.index]
     }
+    
+    # Save results to JSON for potential Frontend use
+    save_report(report)
     
     return report
 
+def save_report(data: dict, filename="data/analysis_report.json"):
+    """Saves the result to a JSON file."""
+    try:
+        with open(filename, "w") as f:
+            json.dump(data, f, indent=4)
+        logging.info(f"Report successfully saved to {filename}")
+    except Exception as e:
+        logging.error(f"Failed to save JSON report: {e}")
+
 if __name__ == "__main__":
-    # Test block
-    metrics_path = "data/metrics.csv"
-    if Path(metrics_path).exists():
-        analysis_report = analyze(metrics_path)
-        print(f"Analysis Report: {analysis_report}")
-    else:
-        print("Test failed: data/metrics.csv does not exist.")
+    logging.basicConfig(level=logging.INFO)
+    print(analyze("data/metrics.csv"))
