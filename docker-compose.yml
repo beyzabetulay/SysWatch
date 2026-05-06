@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: syswatch_app
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./data:/app/data
+    restart: always
+    # This allows psutil to see the HOST system's metrics, not just the container's
+    pid: "host"
+    network_mode: "bridge"

@@ -1,0 +1,16 @@
+# Hardware monitoring
+psutil
+
+# API Framework
+fastapi
+uvicorn
+
+# Data Analysis
+pandas
+
+# Database & Migrations
+sqlalchemy
+alembic
+
+# Visualization (Optional: GUI inside Docker is tricky, but needed for analysis)
+matplotlib
