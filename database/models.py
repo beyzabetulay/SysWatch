@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-def get_db_session(db_url="sqlite:///data/syswatch.db"):
+def get_db_session(db_url="sqlite:///./data/syswatch.db"):
     engine = create_engine(db_url)
     SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
     return SessionLocal()

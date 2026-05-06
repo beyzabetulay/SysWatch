@@ -68,7 +68,6 @@ def get_summary(last_minutes: int = 60, db: Session = Depends(get_db)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="[IP_ADDRESS]", port=8001)    
+    uvicorn.run(app, host="0.0.0.0", port=8001)    
 
-# --- Background Task Integration (Optional but professional) ---
 # Normally, you'd run scheduler.py separately, but you can trigger it here too.
