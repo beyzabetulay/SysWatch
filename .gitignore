@@ -3,4 +3,4 @@ __pycache__/
 data/*.csv
 __pycache__/
 .venv/
-logs/syswatch.log
+logs/syswatch.logreports/
